@@ -23,24 +23,21 @@ class _CalState extends State<Cal> {
           children: [
             Container(
               alignment: Alignment.centerRight,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Column(
                 children: [
                   Text(
                     '0',
-                    style: TextStyle(fontSize: 50),
+                    style: TextStyle(fontSize: 80, color: Colors.white),
                   ),
                   Text(
                     '0',
-                    style: TextStyle(fontSize: 50),
+                    style: TextStyle(fontSize: 80, color: Colors.white),
                   ),
                 ],
               ),
             ),
-            const Expanded(
-              child: Divider(
-                thickness: 3,
-              ),
-            ),
+            Spacer(),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -48,44 +45,43 @@ class _CalState extends State<Cal> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      button('7',kBgColor,kTextColor),
-                      button('8',kBgColor,kTextColor),
-                      button('9',kBgColor,kTextColor),
-                      button('%',kBgColor,kTextColorII),
+                      button('c', kBgColor, kTextColorII),
+                      button('.', kBgColor, kTextColor),
+                      button('00', kBgColor, kTextColor),
+                      button('+', kBgColor, kTextColor),
                     ],
                   ),
                   sizeHeight(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      button('7',kBgColor,kTextColor),
-                      button('8',kBgColor,kTextColor),
-                      button('9',kBgColor,kTextColor),
-                      button('%',kBgColor,kTextColorII),
+                      button('7', kBgColor, kTextWhiteColor),
+                      button('8', kBgColor, kTextWhiteColor),
+                      button('9', kBgColor, kTextWhiteColor),
+                      button('%', kBgColor, kTextColor),
                     ],
                   ),
                   sizeHeight(),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      button('7',kBgColor,kTextColor),
-                      button('8',kBgColor,kTextColor),
-                      button('9',kBgColor,kTextColor),
-                      button('%',kBgColor,kTextColorII),
+                      button('4', kBgColor, kTextWhiteColor),
+                      button('5', kBgColor, kTextWhiteColor),
+                      button('6', kBgColor, kTextWhiteColor),
+                      button('-', kBgColor, kTextColor),
                     ],
                   ),
                   sizeHeight(),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      button('7',kBgColor,kTextColor),
-                      button('8',kBgColor,kTextColor),
-                      button('9',kBgColor,kTextColor),
-                      button('%',kBgColor,kTextColorII),
+                      button('1', kBgColor, kTextWhiteColor),
+                      button('2', kBgColor, kTextWhiteColor),
+                      button('3', kBgColor, kTextWhiteColor),
+                      button('=', kTextColor, kTextWhiteColor),
                     ],
                   ),
+                  sizeHeight(),
                 ],
               ),
             )
@@ -95,21 +91,24 @@ class _CalState extends State<Cal> {
     );
   }
 
-  SizedBox sizeHeight() => SizedBox(height: 20,);
+  SizedBox sizeHeight() => const SizedBox(
+        height: 20,
+      );
 
-  TextButton button( String buttonText,Color bgColor, Color textColor) {
+  TextButton button(String buttonText, Color bgColor, Color textColor) {
     return TextButton(
-                      style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all(const Size(80, 80)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
-                        backgroundColor:
-                            MaterialStateColor.resolveWith((states) => bgColor),
-                      ),
-                      onPressed: ()=>print(buttonText),
-                      child: Text(
-                       buttonText,
-                        style:  TextStyle(fontSize: 30, fontWeight: FontWeight.w600,color: textColor),
-                      ),
-                    );
+      style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all(const Size(90, 90)),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
+        backgroundColor: MaterialStateColor.resolveWith((states) => bgColor),
+      ),
+      onPressed: () => print(buttonText),
+      child: Text(
+        buttonText,
+        style: TextStyle(
+            fontSize: 35, fontWeight: FontWeight.w600, color: textColor),
+      ),
+    );
   }
 }
