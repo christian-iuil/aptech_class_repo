@@ -16,16 +16,16 @@ class _CalState extends State<Cal> {
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-        title: Text('Calculator'),
+        title: const Text('Calculator'),
       ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Column(
-                children: [
+                children: const [
                   Text(
                     '0',
                     style: TextStyle(fontSize: 80, color: Colors.white),
