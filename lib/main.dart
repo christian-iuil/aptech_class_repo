@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:aptech_class_repo/view/calculator.dart';
+import 'package:aptech_class_repo/view/calculator_class.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,12 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-      home:   Calculator(),
+      home: const Cal(),
     );
   }
 }
-
-
