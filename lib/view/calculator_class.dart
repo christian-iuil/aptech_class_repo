@@ -14,22 +14,21 @@ class _CalState extends State<Cal> {
   var num2;
   String operand = "";
 
-  buttonResult(String buttonTextCal) {
-    setState(() {
-      if (buttonTextCal == 'c') {
+  buttonPressed(String buttonText) {
+    try {
+      if (buttonText == "c") {
+        result = "";
         num1 = '';
         num2 = '';
-        operand = '';
-        result = '';
-      } else if (buttonTextCal == "+" ||
-          buttonTextCal == "-" ||
-          buttonTextCal == "*" ||
-          buttonTextCal == "/") {
+        operand = "";
+      } else if (buttonText == "+" ||
+          buttonText == "-" ||
+          buttonText == "*" ||
+          buttonText == "/") {
         num1 = int.parse(result);
-        operand = buttonTextCal;
+        operand = buttonText;
         result = "";
-      }
-      else if (buttonTextCal == "=") {
+      } else if (buttonText == "=") {
         num2 = int.parse(result);
         if (operand == "+") {
           result = (num1 + num2).toString();
@@ -46,14 +45,31 @@ class _CalState extends State<Cal> {
         num1 = '';
         num2 = '';
         operand = "";
+      } else if (buttonText == ".") {
+        if (result.contains(".")) {
+          return;
+        } else {
+          result += buttonText;
+        }
+      } else {
+        result += buttonText;
       }
-    });
+      setState(() {});
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text('Warning'),
+          content: Text('Invalid Number'),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.grey.shade800,
       appBar: AppBar(
         title: const Text('Calculator'),
       ),
@@ -66,17 +82,21 @@ class _CalState extends State<Cal> {
               child: Column(
                 children: [
                   Text(
-                    num1 ?? '',
-                    style: TextStyle(fontSize: 80, color: Colors.white),
+                    num1 == null ? '' : num1.toString(),
+                    style: const TextStyle(fontSize: 48.0,color: Colors.white),
                   ),
                   Text(
-                    num2 ?? '',
-                    style: TextStyle(fontSize: 80, color: Colors.white),
+                    num2 == null ? '' : num2.toString(),
+                    style: const TextStyle(fontSize: 48.0),
+                  ),
+                  Text(
+                    result,
+                    style: const TextStyle(fontSize: 48.0),
                   ),
                 ],
               ),
             ),
-            const Spacer(),
+            Spacer(),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -142,7 +162,7 @@ class _CalState extends State<Cal> {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
         backgroundColor: MaterialStateColor.resolveWith((states) => bgColor),
       ),
-      onPressed: () => buttonResult(buttonText),
+      onPressed: () => buttonPressed(buttonText),
       child: Text(
         buttonText,
         style: TextStyle(
