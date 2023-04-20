@@ -27,13 +27,8 @@ class _CalculatorState extends State<Calculator> {
         num1 = int.parse(result);
         operand = buttonText;
         result = "";
-      } else if (buttonText == ".") {
-        if (result.contains(".")) {
-          return;
-        } else {
-          result += buttonText;
-        }
-      } else if (buttonText == "=") {
+      }
+      else if (buttonText == "=") {
         num2 = int.parse(result);
         if (operand == "+") {
           result = (num1 + num2).toString();
@@ -50,6 +45,12 @@ class _CalculatorState extends State<Calculator> {
         num1 = '';
         num2 = '';
         operand = "";
+      } else if (buttonText == ".") {
+        if (result.contains(".")) {
+          return;
+        } else {
+          result += buttonText;
+        }
       } else {
         result += buttonText;
       }
@@ -98,7 +99,8 @@ class _CalculatorState extends State<Calculator> {
         body: Column(children: <Widget>[
           Container(
             alignment: Alignment.centerRight,
-            padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
             child: Column(
               children: [
                 Text(

@@ -9,9 +9,49 @@ class Cal extends StatefulWidget {
 }
 
 class _CalState extends State<Cal> {
+  String result = "";
+  var num1;
+  var num2;
+  String operand = "";
+
+  buttonResult(String buttonTextCal) {
+    setState(() {
+      if (buttonTextCal == 'c') {
+        num1 = '';
+        num2 = '';
+        operand = '';
+        result = '';
+      } else if (buttonTextCal == "+" ||
+          buttonTextCal == "-" ||
+          buttonTextCal == "*" ||
+          buttonTextCal == "/") {
+        num1 = int.parse(result);
+        operand = buttonTextCal;
+        result = "";
+      }
+      else if (buttonTextCal == "=") {
+        num2 = int.parse(result);
+        if (operand == "+") {
+          result = (num1 + num2).toString();
+        }
+        if (operand == "-") {
+          result = (num1 - num2).toString();
+        }
+        if (operand == "*") {
+          result = (num1 * num2).toString();
+        }
+        if (operand == "/") {
+          result = (num1 / num2).toString();
+        }
+        num1 = '';
+        num2 = '';
+        operand = "";
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final mediaquery = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -24,13 +64,13 @@ class _CalState extends State<Cal> {
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Column(
-                children: const [
+                children: [
                   Text(
-                    '0',
+                    num1 ?? '',
                     style: TextStyle(fontSize: 80, color: Colors.white),
                   ),
                   Text(
-                    '0',
+                    num2 ?? '',
                     style: TextStyle(fontSize: 80, color: Colors.white),
                   ),
                 ],
@@ -57,7 +97,7 @@ class _CalState extends State<Cal> {
                       button('7', kBgColor, kTextWhiteColor),
                       button('8', kBgColor, kTextWhiteColor),
                       button('9', kBgColor, kTextWhiteColor),
-                      button('%', kBgColor, kTextColor),
+                      button('/', kBgColor, kTextColor),
                     ],
                   ),
                   sizeHeight(),
@@ -102,7 +142,7 @@ class _CalState extends State<Cal> {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
         backgroundColor: MaterialStateColor.resolveWith((states) => bgColor),
       ),
-      onPressed: () => print(buttonText),
+      onPressed: () => buttonResult(buttonText),
       child: Text(
         buttonText,
         style: TextStyle(
