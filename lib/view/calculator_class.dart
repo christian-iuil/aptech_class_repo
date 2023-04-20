@@ -1,6 +1,5 @@
+import 'package:aptech_class_repo/style/styles.dart';
 import 'package:flutter/material.dart';
-
-import '../style/styles.dart';
 
 class Cal extends StatefulWidget {
   const Cal({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class _CalState extends State<Cal> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -91,11 +90,11 @@ class _CalState extends State<Cal> {
     );
   }
 
-  SizedBox sizeHeight() => const SizedBox(
+  sizeHeight() => const SizedBox(
         height: 20,
       );
 
-  TextButton button(String buttonText, Color bgColor, Color textColor) {
+  button(String buttonText, Color bgColor, Color textColor) {
     return TextButton(
       style: ButtonStyle(
         fixedSize: MaterialStateProperty.all(const Size(90, 90)),
